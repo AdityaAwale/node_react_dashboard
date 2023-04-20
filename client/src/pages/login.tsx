@@ -52,6 +52,7 @@ export const Login: React.FC = () => {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#abaeea",
       }}
     >
       <Box
@@ -59,6 +60,9 @@ export const Login: React.FC = () => {
         gap="36px"
         justifyContent="center"
         flexDirection="column"
+        bgcolor="#fcfcfc"
+        p={6}
+        borderRadius={2}
       >
         <ThemedTitleV2
           collapsed={false}
@@ -66,13 +70,13 @@ export const Login: React.FC = () => {
             fontSize: "22px",
             justifyContent: "center",
           }}
-          text="Yariga"
+          text="Properties"
           icon={yariga}
         />
 
-        <div>
-          <img src={yariga} alt="Yariga logo" />
-        </div>
+        {/* <div>
+          <img src={yariga} alt="Properties logo" />
+        </div> */}
 
         <GoogleButton />
 
