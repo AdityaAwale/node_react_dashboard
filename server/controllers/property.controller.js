@@ -117,15 +117,14 @@ const deleteProperty = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const propertyToDelete = await Property.findById({ _id: id }).populate(
-      "creator"
-    );
-    if (!propertyToDelete) throw new Error("Property not found");
-
     const session = await mongoose.startSession();
     session.startTransaction();
 
-    propertyToDelete.remove({ session });
+    const propertyToDelete = await Property.findById({ _id: id })
+      .session(session)
+      .populate("creator");
+    if (!propertyToDelete) throw new Error("Property not found");
+    propertyToDelete.deleteOne({ session });
     propertyToDelete.creator.properties.pull(propertyToDelete);
 
     await propertyToDelete.creator.save({ session });
